@@ -24,7 +24,6 @@
 
  <img width="1420" alt="saas-landing" src="https://github.com/user-attachments/assets/fcaf6b8d-004b-41d5-a1f8-8b609d626950">
 
- 
 </div>
 
 # Saas Landing Page
@@ -42,13 +41,13 @@ Template for saas landing page with dark theme using Next.js 14, React, Tailwind
 1. Clone this repository to your local machine:
 
    ```bash
-   git clone https://github.com/karthikmudunuri/portfolio-template
+   git clone https://github.com/karthikmudunuri/saas-landing-page-template.git
    ```
 
 2. Move to the cloned directory
 
    ```bash
-   cd portfolio-template
+   cd saas-landing-page-template
    ```
 
 3. Install dependencies:
