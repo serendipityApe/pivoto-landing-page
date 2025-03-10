@@ -8,24 +8,18 @@ import { FAQs } from "@/components/FAQs";
 import { CallToAction } from "@/components/CallToAction";
 import { Footer } from "@/components/Footer";
 import { Pricing } from "@/components/Pricingdemo";
-
+import Demo from "@/components/demo";
 
 export default function Home() {
   return (
     <>
-    <div className="overflow-x-hidden">
-      <Banner />
-      <Navbar />
-      <Hero />
-      <LogoTicker />
-      
-      <Features />
-      
-      <ProductShowcase />
-      <FAQs />
-      <Pricing/>
-     
-      <CallToAction />
+      <div className="overflow-x-hidden">
+        <Banner />
+        <Navbar />
+        <Hero />
+        <Demo />
+        <ProductShowcase />
+        <FAQs />
       </div>
       <Footer />
     </>

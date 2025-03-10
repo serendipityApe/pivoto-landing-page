@@ -6,24 +6,24 @@ import clsx from "clsx";
 import {motion , AnimatePresence} from 'framer-motion';
 const items = [
   {
-    question: "What payment methods do you accept?",
+    question: "How do I get started with Pivoto?",
     answer:
-      "We accept all major credit cards, PayPal, and various other payment methods depending on your location. Please contact our support team for more information on accepted payment methods in your region.",
+      "Getting started is easy! After installing Pivoto, you can use Command + Shift + K to open the main interface or Command + Q for quick tab switching. Spend a few minutes exploring the interface, including the search bar with @ commands and tab navigator for easy access to all your open tabs.",
   },
   {
-    question: "How does the pricing work for teams?",
+    question: "What are the main keyboard shortcuts?",
     answer:
-      "Our pricing is per user, per month. This means you only pay for the number of team members you have on your account. Discounts are available for larger teams and annual subscriptions.",
+      "Pivoto offers two main shortcuts: Command + Shift + K to open the main interface with full search capabilities, and Command + Q for quick tab switching. When using Command + Q, hold Command to access a simplified interface for rapid tab navigation across different windows.",
   },
   {
-    question: "Can I change my plan later?",
+    question: "How does the search functionality work?",
     answer:
-      "Yes, you can upgrade or downgrade your plan at any time. Changes to your plan will be prorated and reflected in your next billing cycle.",
+      "Pivoto's search bar is highly powerful and supports @ commands for quick searching. You can instantly get input suggestions using Tab at any time. The search functionality works across all your open tabs, history, and bookmarks, making it easy to find exactly what you're looking for.",
   },
   {
-    question: "Is my data secure?",
+    question: "Can I customize Pivoto to my workflow?",
     answer:
-      "Security is our top priority. We use state-of-the-art encryption and comply with the best industry practices to ensure that your data is stored securely and accessed only by authorized users.",
+      "Yes! Pivoto is designed to be flexible and customizable. You can configure your preferred shortcuts and focus options to match your workflow. We recommend saving sites with relevant keywords for easier future access, and utilizing features like cross-window navigation and installed-as-app page switching for enhanced productivity.",
   },
 ];
 
