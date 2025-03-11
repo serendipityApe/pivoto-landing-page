@@ -156,7 +156,15 @@ function CommandPalette({
       setActiveIndex(0);
       onGetActions();
     }
-  }, [tags, searchValue]);
+  }, [
+    tags,
+    searchValue,
+    deferredIsTagMode,
+    onSearch,
+    onSearchBookmarks,
+    onSearchHistory,
+    onGetActions,
+  ]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -228,7 +236,18 @@ function CommandPalette({
       document.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("keyup", handleKeyUp);
     };
-  }, [keyStates, isOpen, filteredActions, activeIndex]);
+  }, [
+    keyStates,
+    isOpen,
+    filteredActions,
+    activeIndex,
+    canActiveActions,
+    handleAction,
+    itemActiveDown,
+    itemActiveUp,
+    onClose,
+    setIsOpen,
+  ]);
 
   useEffect(() => {
     const fetchFilteredActions = async () => {

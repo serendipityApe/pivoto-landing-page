@@ -22,7 +22,7 @@ export const ProductShowcase = () => {
         <div className="max-w-xl mx-auto mb-8">
           <p className="text-xl text-white/70 text-center mt-5 ">
             Experience seamless tab management and enhanced productivity with
-            Pivoto's intuitive features designed for modern browsing.
+            Pivoto&apos;s intuitive features designed for modern browsing.
           </p>
         </div>
         <div className="flex justify-center w-full" ref={appImage}>

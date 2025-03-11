@@ -17,6 +17,7 @@ type ItemProps = {
   isTagMode?: boolean;
   enterText: React.ReactNode;
 } & Action;
+
 const Item = memo(
   ({
     isActive,
@@ -39,7 +40,6 @@ const Item = memo(
     action,
   }: ItemProps) => {
     const lastText = getLastActiveTimeString(lastActiveTime || lastVisitTime);
-    // const domain = url ? new URL(url)?.hostname : null
     domain = domain || processDomain(url);
     let tmpDesc = corsTranslate(desc);
     if ((!desc || desc === "Chrome tab" || desc === "Bookmark") && domain) {
@@ -48,19 +48,10 @@ const Item = memo(
     const itemRef = useRef(null);
     useEffect(() => {
       if (!isActive || !itemRef?.current) return;
-      // @ts-ignore
-      // itemRef.current.scrollIntoView({
-      //   behavior: "instant",
-      //   block: "center",
-      //   inline: "nearest",
-      // });
     }, [isActive]);
-    // utils.js
 
-    //display tag if action is history or bookmark
     const isDisplayTypeTag =
       !isTagMode && (action === "history" || action === "bookmark");
-    // const finallyDesc = lastText ? `${tmpDesc} • ${lastText}` : tmpDesc
     const finallyDesc = [groupTitle, tmpDesc, lastText].filter(Boolean);
     return (
       <>
@@ -75,7 +66,6 @@ const Item = memo(
                 isActive,
             }
           )}
-          // data-index={index}
           data-type="tab"
         >
           <span className="flex ml-6 items-center justify-center w-12 h-12 bg-bgFavicon dark:bg-bgFaviconDark rounded-lg shrink-0">
@@ -141,5 +131,7 @@ const Item = memo(
     );
   }
 );
+
+Item.displayName = "Item";
 
 export default Item;
