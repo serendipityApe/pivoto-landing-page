@@ -47,13 +47,13 @@ function CommandPalette({
 }: CommandPaletteProps) {
   const isAltTimer = useRef(null);
 
-  const [keyStates, setKeyStates] = useState({});
+  const [keyStates, setKeyStates] = useState<Record<string, boolean>>({});
   const [activeIndex, setActiveIndex] = useState(0);
   const [searchValue, setSearchValue] = useState("");
   const [tags, setTags] = useState<string[]>([]);
-  const [trieData, setTrieData] = useState([]);
+  const [trieData, setTrieData] = useState<string[]>([]);
   const [InputDisabled, setInputDisabled] = useState(false);
-  const [filteredActions, setFilteredActions] = useState([]);
+  const [filteredActions, setFilteredActions] = useState<Action[]>([]);
 
   const isTagMode = useMemo(() => tags.length > 0, [tags]);
   const canActiveActions = useMemo(
@@ -63,18 +63,19 @@ function CommandPalette({
 
   const navigateText = useMemo(() => {
     if (InputDisabled) {
-      const shortcut = shortcuts.find((s) => s.name === "cycle-tab").shortcut;
-      return (
-        <div
-          id="pivoto-arrows"
-          className="text-text3 dark:text-text3Dark font-medium float-right"
-        >
-          Hold
-          <KeyTag>{shortcut[0]}</KeyTag>
-          and press
-          <KeyTag>{shortcut[1]}</KeyTag> to navigate
-        </div>
-      );
+      const shortcut = shortcuts.find((s) => s.name === "cycle-tab")?.shortcut;
+      if (shortcut)
+        return (
+          <div
+            id="pivoto-arrows"
+            className="text-text3 dark:text-text3Dark font-medium float-right"
+          >
+            Hold
+            <KeyTag>{shortcut[0]}</KeyTag>
+            and press
+            <KeyTag>{shortcut[1]}</KeyTag> to navigate
+          </div>
+        );
     }
     return (
       <div
@@ -89,12 +90,13 @@ function CommandPalette({
 
   const enterText = useMemo(() => {
     if (InputDisabled) {
-      const shortcut = shortcuts.find((s) => s.name === "cycle-tab").shortcut;
-      return (
-        <span>
-          Release <KeyTag>{shortcut[0]}</KeyTag>
-        </span>
-      );
+      const shortcut = shortcuts.find((s) => s.name === "cycle-tab")?.shortcut;
+      if (shortcut)
+        return (
+          <span>
+            Release <KeyTag>{shortcut[0]}</KeyTag>
+          </span>
+        );
     }
     return (
       <span>
@@ -103,37 +105,47 @@ function CommandPalette({
     );
   }, [shortcuts, InputDisabled]);
 
-  function itemActiveUp() {
+  const itemActiveUp = useCallback(() => {
     setActiveIndex((pre) => (pre > 0 ? pre - 1 : filteredActions.length - 1));
-  }
+  }, [filteredActions.length]);
 
-  function itemActiveDown() {
+  const itemActiveDown = useCallback(() => {
     setActiveIndex((pre) => (pre < filteredActions.length - 1 ? pre + 1 : 0));
-  }
+  }, [filteredActions.length]);
 
-  function handleAction(index: number) {
-    function clearRunTime() {
-      clearTimeout(isAltTimer.current);
-      isAltTimer.current = null;
-      onClose();
-      setSearchValue("");
-    }
+  const handleAction = useCallback(
+    (index: number) => {
+      function clearRunTime() {
+        clearTimeout(isAltTimer.current);
+        isAltTimer.current = null;
+        onClose();
+        setSearchValue("");
+      }
 
-    const action = filteredActions[index];
+      const action = filteredActions[index];
 
-    if (action.type === "ai") {
-      onAiCommand(action, searchValue);
+      if (action.type === "ai") {
+        onAiCommand(action, searchValue);
+        clearRunTime();
+        return;
+      }
+
       clearRunTime();
-      return;
-    }
-
-    clearRunTime();
-    if (action.action === "bookmark" || action.action === "history") {
-      window.open(action.url);
-    } else {
-      onAction(action, searchValue);
-    }
-  }
+      if (action.action === "bookmark" || action.action === "history") {
+        window.open(action.url);
+      } else {
+        onAction(action, searchValue);
+      }
+    },
+    [
+      filteredActions,
+      onAiCommand,
+      onAction,
+      onClose,
+      searchValue,
+      setSearchValue,
+    ]
+  );
 
   const deferredIsTagMode = useDeferredValue(isTagMode);
   useEffect(() => {
@@ -167,7 +179,7 @@ function CommandPalette({
   ]);
 
   useEffect(() => {
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: KeyboardEvent) => {
       console.log(e.key.toLowerCase());
       if (e.metaKey && e.key.toLowerCase() === "k") {
         e.preventDefault();
@@ -213,7 +225,7 @@ function CommandPalette({
       }
     };
 
-    const handleKeyUp = (e) => {
+    const handleKeyUp = (e: KeyboardEvent) => {
       const newKeyStates = { ...keyStates, [e.key]: false };
       if (isOpen && ["Alt", "Shift"].includes(e.key)) {
         e.preventDefault();

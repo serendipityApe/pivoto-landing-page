@@ -21,6 +21,7 @@ type TagInputFieldProps = {
   onChange?: (latestValue: string) => void;
   showActionsSuggestion?: boolean;
 };
+
 const TagInputField = forwardRef<HTMLInputElement, TagInputFieldProps>(
   function TagInputField(props, ref) {
     const {
@@ -56,7 +57,7 @@ const TagInputField = forwardRef<HTMLInputElement, TagInputFieldProps>(
       return trie;
     }, [trieData]);
 
-    const onChange = (e) => {
+    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
       setInput(value);
       startTransition(() => {
@@ -65,7 +66,7 @@ const TagInputField = forwardRef<HTMLInputElement, TagInputFieldProps>(
       });
     };
 
-    const onKeyDown = (e) => {
+    const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
       const { key } = e;
       switch (key) {
         case "Tab":
@@ -78,7 +79,6 @@ const TagInputField = forwardRef<HTMLInputElement, TagInputFieldProps>(
                 setInput("");
               }
             } else {
-              // redo is valid when call document.execCommand
               let tmpRes = document.execCommand(
                 "insertText",
                 false,
@@ -100,7 +100,6 @@ const TagInputField = forwardRef<HTMLInputElement, TagInputFieldProps>(
           break;
         default:
           if (/^[a-zA-Z]$/.test(e.key)) {
-            // e.preventDefault()
             e.stopPropagation();
           }
           break;
