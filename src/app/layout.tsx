@@ -17,6 +17,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta
+          name="google-site-verification"
+          content="8Ld3zqjkH7FNael7CdGb-aWxAsdD2nx8xxv6VCB3mh0"
+        />
+      </head>
       <body className={clsx(dmSans.className, "antialiased")}>{children}</body>
     </html>
   );
