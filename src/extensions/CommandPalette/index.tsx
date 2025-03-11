@@ -116,7 +116,7 @@ function CommandPalette({
   const handleAction = useCallback(
     (index: number) => {
       function clearRunTime() {
-        clearTimeout(isAltTimer.current);
+        clearTimeout(isAltTimer.current as any);
         isAltTimer.current = null;
         onClose();
         setSearchValue("");
@@ -151,7 +151,7 @@ function CommandPalette({
   useEffect(() => {
     setTrieData([
       ...tagKeys.map((key) => TagStartKey + key),
-      ...processDomains(filteredActions),
+      ...processDomains(filteredActions as any[]),
     ]);
   }, [filteredActions]);
   console.log("trieData", trieData);

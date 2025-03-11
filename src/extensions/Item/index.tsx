@@ -16,6 +16,7 @@ type ItemProps = {
   style?: any;
   isTagMode?: boolean;
   enterText: React.ReactNode;
+  [key: string]: any;
 } & Action;
 
 const Item = memo(
@@ -34,13 +35,12 @@ const Item = memo(
     groupTitle,
     groupColor,
     enterText,
-    incognito,
     CustomIcon,
     favIconUrl,
     action,
   }: ItemProps) => {
     const lastText = getLastActiveTimeString(lastActiveTime || lastVisitTime);
-    domain = domain || processDomain(url);
+    domain = domain || (processDomain(url) as any);
     let tmpDesc = corsTranslate(desc);
     if ((!desc || desc === "Chrome tab" || desc === "Bookmark") && domain) {
       tmpDesc = domain;
@@ -108,7 +108,9 @@ const Item = memo(
                   className="w-1.5 h-1.5 rounded-full"
                   style={{
                     backgroundColor:
-                      CHROME_GROUP_COLORS[groupColor] || groupColor,
+                      CHROME_GROUP_COLORS[
+                        groupColor as keyof typeof CHROME_GROUP_COLORS
+                      ] || groupColor,
                   }}
                 ></span>
               )}
