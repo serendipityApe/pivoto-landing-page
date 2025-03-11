@@ -7,27 +7,60 @@ import type { Action } from "../extensions/types";
 // Mock data for actions
 const mockActions: Action[] = [
   {
-    id: "1",
-    title: "Google Search",
-    desc: "Search on Google",
-    url: "https://google.com",
-    action: "bookmark",
-    favIconUrl: "https://www.google.com/favicon.ico",
+    id: "dashboard",
+    title: "Pivoto Dashboard",
+    // desc: "View main dashboard",
+    action: "switch-tab",
+    CustomIcon: (
+      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z" />
+      </svg>
+    ),
+    url: "https://pivoto.dashboard.com",
+    domain: "pivoto.dashboard.com",
+    active: true,
   },
   {
-    id: "2",
-    title: "GitHub",
-    desc: "View GitHub repository",
-    url: "https://github.com",
-    action: "history",
-    favIconUrl: "https://github.com/favicon.ico",
+    id: "settings",
+    title: "Settings",
+    // desc: "Manage settings",
+    action: "switch-tab",
+    CustomIcon: (
+      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.07.62-.07.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z" />
+      </svg>
+    ),
+    url: "https://pivoto.settings.com",
+    domain: "pivoto.settings.com",
+    active: false,
   },
   {
-    id: "3",
-    title: "Ask AI",
-    desc: "Get help from AI",
-    type: "ai",
-    action: "ai_command",
+    id: "analytics",
+    title: "Analytics",
+    // desc: "View analytics data",
+    action: "switch-tab",
+    CustomIcon: (
+      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" />
+      </svg>
+    ),
+    url: "https://pivoto.analytics.com",
+    domain: "pivoto.analytics.com",
+    active: false,
+  },
+  {
+    id: "profile",
+    title: "Profile",
+    // desc: "View profile settings",
+    action: "switch-tab",
+    url: "https://pivoto.profile.com",
+    domain: "pivoto.profile.com",
+    CustomIcon: (
+      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+      </svg>
+    ),
+    active: false,
   },
 ];
 
@@ -102,6 +135,7 @@ export default function Demo() {
         <CommandPalette
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}
+          setIsOpen={setIsOpen}
           actions={actions}
           shortcuts={mockShortcuts}
           onAction={handleAction}

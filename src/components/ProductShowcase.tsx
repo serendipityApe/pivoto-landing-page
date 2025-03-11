@@ -2,6 +2,7 @@
 import BrowserLike from "./BrowserLike";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef } from "react";
+import Demo from "./demo";
 export const ProductShowcase = () => {
   const appImage = useRef<HTMLImageElement>(null);
   const { scrollYProgress } = useScroll({
@@ -33,7 +34,7 @@ export const ProductShowcase = () => {
               width: "100%",
             }}
           >
-            <BrowserLike />
+            <BrowserLike pivoto={<Demo />} />
           </motion.div>
         </div>
       </div>

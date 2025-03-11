@@ -1,5 +1,6 @@
 import cls from "classnames";
 import {
+  SetStateAction,
   useCallback,
   useDeferredValue,
   useEffect,
@@ -13,6 +14,7 @@ import Item from "../Item";
 import KeyTag from "../KeyTag";
 import { ADDITIONAL_RESULTS_LENGTH, tagKeys, TagStartKey } from "../constants";
 import type { Action } from "../types";
+import { processDomains } from "../utils";
 
 interface CommandPaletteProps {
   onAction: (action: Action, query: string) => void;
@@ -26,6 +28,7 @@ interface CommandPaletteProps {
   onClose: () => void;
   actions: Action[];
   shortcuts: Array<{ name: string; shortcut: string[] }>;
+  setIsOpen: React.Dispatch<SetStateAction<boolean>>;
 }
 
 function CommandPalette({
@@ -40,13 +43,14 @@ function CommandPalette({
   onClose,
   actions: originActions,
   shortcuts,
+  setIsOpen,
 }: CommandPaletteProps) {
   const isAltTimer = useRef(null);
 
   const [keyStates, setKeyStates] = useState({});
   const [activeIndex, setActiveIndex] = useState(0);
   const [searchValue, setSearchValue] = useState("");
-  const [tags, setTags] = useState([]);
+  const [tags, setTags] = useState<string[]>([]);
   const [trieData, setTrieData] = useState([]);
   const [InputDisabled, setInputDisabled] = useState(false);
   const [filteredActions, setFilteredActions] = useState([]);
@@ -132,7 +136,13 @@ function CommandPalette({
   }
 
   const deferredIsTagMode = useDeferredValue(isTagMode);
-
+  useEffect(() => {
+    setTrieData([
+      ...tagKeys.map((key) => TagStartKey + key),
+      ...processDomains(filteredActions),
+    ]);
+  }, [filteredActions]);
+  console.log("trieData", trieData);
   useEffect(() => {
     if (tags.includes("bookmark")) {
       onSearchBookmarks(searchValue);
@@ -150,15 +160,22 @@ function CommandPalette({
 
   useEffect(() => {
     const handleKeyDown = (e) => {
+      console.log(e.key.toLowerCase());
+      if (e.metaKey && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        !isOpen && setIsOpen(true);
+        return;
+      }
       if (
         isOpen &&
-        ["ArrowUp", "ArrowDown", "Escape", "Enter"].includes(e.key)
+        ["ArrowUp", "ArrowDown", "Escape", "Enter", "Tab"].includes(e.key)
       ) {
+        e.preventDefault();
+
         setKeyStates((prevKeyStates) => ({
           ...prevKeyStates,
           [e.key]: true,
         }));
-        e.preventDefault();
       }
       switch (e.key) {
         case "ArrowUp":
@@ -247,13 +264,13 @@ function CommandPalette({
     <>
       <div
         id="pivoto-extension"
-        className={cls("block", {
+        className={cls("block dark", {
           hidden: !isOpen,
         })}
       >
         <div
           id="pivoto-wrap"
-          className="fixed w-window h-3/4 border border-transparent rounded-md mx-auto my-auto top-0 right-0 bottom-0 left-0 z-max transition-all duration-200 pointer-events-auto"
+          className="absolute w-window h-3/4 border border-transparent rounded-md mx-auto my-auto top-0 right-0 bottom-0 left-0 z-10 transition-all duration-200 pointer-events-auto"
         >
           <div
             id="pivoto"
@@ -309,7 +326,7 @@ function CommandPalette({
         </div>
         <div
           id="pivoto-overlay"
-          className="fixed top-0 left-0 bg-[#0003] backdrop-blur-[1px] w-full h-full"
+          className="absolute top-0 left-0 bg-[#0003] backdrop-blur-[1px] w-full h-full"
           onClick={() => {
             onClose();
             if (isAltTimer.current) isAltTimer.current = null;

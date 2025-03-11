@@ -2,7 +2,7 @@
 
 import React from "react";
 
-const BrowserLike = () => {
+const BrowserLike = ({ pivoto }: { pivoto?: React.ReactNode }) => {
   const tabs = [
     {
       id: "dashboard",
@@ -132,13 +132,13 @@ const BrowserLike = () => {
                 clipRule="evenodd"
               />
             </svg>
-            pivoto.app/{activeTab}
+            pivoto.{activeTab}.com
           </div>
         </div>
       </div>
 
       {/* Browser Content */}
-      <div className="bg-[#1E1E1E] p-8 min-h-[400px]">
+      <div className="bg-[#1E1E1E] p-8 min-h-[400px] max-h-[710px] relative">
         <div className="w-full h-full bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-lg p-6">
           <div className="animate-pulse space-y-4">
             <div className="h-4 bg-white/10 rounded w-3/4"></div>
@@ -146,6 +146,7 @@ const BrowserLike = () => {
             <div className="h-4 bg-white/10 rounded w-5/6"></div>
           </div>
         </div>
+        {pivoto}
       </div>
     </div>
   );

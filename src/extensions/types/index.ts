@@ -13,4 +13,6 @@ export type Action = {
   lastActiveTime?: number;
   title: string;
   CustomIcon?: React.ReactNode;
+  url: string;
+  active: boolean;
 };
