@@ -6,8 +6,9 @@ import "./globals.css";
 const dmSans = DM_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Saas Template - EldoraUI",
-  description: "Template for saas applications with dark theme",
+  title: "Chrome Extension - Pivoto",
+  description:
+    "Pivoto is a chrome extension that helps you to manage your tabs.",
 };
 
 export default function RootLayout({
