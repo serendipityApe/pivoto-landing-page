@@ -125,20 +125,9 @@ function CommandPalette({
       const action = filteredActions[index];
 
       clearRunTime();
-      if (action.action === "bookmark" || action.action === "history") {
-        window.open(action.url);
-      } else {
-        onAction(action, searchValue);
-      }
+      onAction(action, searchValue);
     },
-    [
-      filteredActions,
-      onAiCommand,
-      onAction,
-      onClose,
-      searchValue,
-      setSearchValue,
-    ]
+    [filteredActions, onAction, onClose, searchValue, setSearchValue]
   );
 
   const deferredIsTagMode = useDeferredValue(isTagMode);

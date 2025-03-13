@@ -34,7 +34,7 @@ export const ProductShowcase = () => {
               width: "100%",
             }}
           >
-            <BrowserLike pivoto={<Demo />} />
+            <Demo />
           </motion.div>
         </div>
       </div>

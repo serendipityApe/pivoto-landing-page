@@ -1,3 +1,5 @@
+import React from "react";
+
 export type Action = {
   type?: string;
   emoji?: boolean;
@@ -15,4 +17,5 @@ export type Action = {
   CustomIcon?: React.ReactNode;
   url: string;
   active: boolean;
+  content: React.ReactNode;
 };
