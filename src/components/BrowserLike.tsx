@@ -5,48 +5,140 @@ import React from "react";
 const BrowserLike = ({ pivoto }: { pivoto?: React.ReactNode }) => {
   const tabs = [
     {
-      id: "dashboard",
-      name: "Pivoto Dashboard",
+      id: "command-k",
+      name: "Command + K Guide",
       active: true,
       icon: (
         <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
           <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z" />
         </svg>
       ),
+      content: (
+        <div className="space-y-6 text-white/90">
+          <h2 className="text-2xl font-bold">Quick Access with Command + K</h2>
+          <div className="space-y-4">
+            <p className="text-lg">Welcome to Pivoto! 🎉</p>
+            <p>
+              To get started, press Command + Shift + K (or Ctrl + Shift + K on
+              Windows) to open Pivoto&apos;s search interface.
+            </p>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>
+                Try typing a keyword to find an open tab, bookmark, or browsing
+                history entry.
+              </li>
+              <li>
+                Use @ commands to refine your search (e.g., @bookmarks keyword).
+              </li>
+            </ul>
+            <p className="text-white/70 italic">
+              Now, press Command + Shift + K and explore!
+            </p>
+          </div>
+        </div>
+      ),
     },
     {
-      id: "settings",
-      name: "Settings",
+      id: "command-q",
+      name: "Quick Switch Guide",
       active: false,
       icon: (
         <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
           <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.07.62-.07.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z" />
         </svg>
       ),
+      content: (
+        <div className="space-y-6 text-white/90">
+          <h2 className="text-2xl font-bold">
+            Switch Tabs Instantly with Command + Q
+          </h2>
+          <div className="space-y-4">
+            <p className="text-lg">Want to switch between tabs faster?</p>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>
+                Press Command + Q to instantly return to your last viewed tab.
+              </li>
+              <li>
+                Hold Command after pressing Q to see a quick tab switcher.
+              </li>
+              <li>
+                While holding Command, keep pressing Q to cycle through tabs.
+              </li>
+            </ul>
+            <p className="text-white/70 italic">
+              Try pressing Command + Q now!
+            </p>
+          </div>
+        </div>
+      ),
     },
     {
-      id: "analytics",
-      name: "Analytics",
+      id: "history",
+      name: "History Search Guide",
       active: false,
       icon: (
         <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
           <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" />
         </svg>
       ),
+      content: (
+        <div className="space-y-6 text-white/90">
+          <h2 className="text-2xl font-bold">
+            Find Browsing History with @history
+          </h2>
+          <div className="space-y-4">
+            <p className="text-lg">
+              Need to find something you visited earlier?
+            </p>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>Open Pivoto with Command + Shift + K.</li>
+              <li>
+                Type @history followed by a keyword (e.g., @history
+                documentation).
+              </li>
+              <li>Select the result you need and press Enter.</li>
+            </ul>
+            <p className="text-white/70 italic">
+              Try searching with @history now!
+            </p>
+          </div>
+        </div>
+      ),
     },
     {
-      id: "profile",
-      name: "Profile",
+      id: "bookmarks",
+      name: "Bookmarks Search Guide",
       active: false,
       icon: (
         <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
           <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
         </svg>
       ),
+      content: (
+        <div className="space-y-6 text-white/90">
+          <h2 className="text-2xl font-bold">
+            Quickly Find Bookmarks with @bookmarks
+          </h2>
+          <div className="space-y-4">
+            <p className="text-lg">
+              Too many bookmarks to remember? Use Pivoto to search them
+              instantly!
+            </p>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>Open Pivoto with Command + Shift + K.</li>
+              <li>
+                Type @bookmarks followed by a keyword (e.g., @bookmarks design).
+              </li>
+              <li>Select the desired bookmark and press Enter.</li>
+            </ul>
+            <p className="text-white/70 italic">Give it a try now!</p>
+          </div>
+        </div>
+      ),
     },
   ];
 
-  const [activeTab, setActiveTab] = React.useState("dashboard");
+  const [activeTab, setActiveTab] = React.useState("command-k");
 
   return (
     <div className="w-full h-[800px] mx-8 bg-[#1E1E1E] rounded-lg overflow-hidden shadow-2xl border border-white/10">
@@ -140,11 +232,7 @@ const BrowserLike = ({ pivoto }: { pivoto?: React.ReactNode }) => {
       {/* Browser Content */}
       <div className="bg-[#1E1E1E] p-8 min-h-[400px] max-h-[710px] relative">
         <div className="w-full h-full bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-lg p-6">
-          <div className="animate-pulse space-y-4">
-            <div className="h-4 bg-white/10 rounded w-3/4"></div>
-            <div className="h-4 bg-white/10 rounded w-1/2"></div>
-            <div className="h-4 bg-white/10 rounded w-5/6"></div>
-          </div>
+          {tabs.find((tab) => tab.id === activeTab)?.content}
         </div>
         {pivoto}
       </div>

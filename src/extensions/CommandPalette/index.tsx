@@ -124,12 +124,6 @@ function CommandPalette({
 
       const action = filteredActions[index];
 
-      if (action.type === "ai") {
-        onAiCommand(action, searchValue);
-        clearRunTime();
-        return;
-      }
-
       clearRunTime();
       if (action.action === "bookmark" || action.action === "history") {
         window.open(action.url);
