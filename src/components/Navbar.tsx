@@ -1,5 +1,8 @@
+"use client";
+import { PRODUCT_SHOWCASE_HEAD } from "@/extensions/constants";
 import LogoImage from "../assets/icons/logo.svg";
 import MenuIcon from "../assets/icons/menu.svg";
+import { exploreHandler } from "./lib/utils";
 
 export const Navbar = () => {
   return (
@@ -50,35 +53,37 @@ export const Navbar = () => {
               <a
                 href="#"
                 className="text-opacity-60 text-white hover:text-opacity-100 transition"
+                onClick={(e) => {
+                  e.preventDefault();
+                  exploreHandler();
+                }}
               >
-                About
+                Explore
               </a>
               <a
                 href="#"
                 className="text-opacity-60 text-white hover:text-opacity-100 transition"
-              >
-                Features
-              </a>
-              <a
-                href="#"
-                className="text-opacity-60 text-white hover:text-opacity-100 transition"
-              >
-                Updates
-              </a>
-              <a
-                href="#"
-                className="text-opacity-60 text-white hover:text-opacity-100 transition"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const faqSection = document.querySelector(
+                    ".bg-gradient-to-b.from-\\[\\#5D2CA8\\].to-black"
+                  );
+                  if (faqSection) {
+                    faqSection.scrollIntoView({ behavior: "smooth" });
+                  }
+                }}
               >
                 Help
               </a>
               <a
-                href="#"
+                href="https://discord.gg/QS7rty8d"
                 className="text-opacity-60 text-white hover:text-opacity-100 transition"
+                target="_blank"
               >
-                Customers
+                Community
               </a>
               <button className="bg-white py-2 px-4 rounded-lg text-black">
-                Get for free
+                Install Pivoto
               </button>
             </nav>
           </div>

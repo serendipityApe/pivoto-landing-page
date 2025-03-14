@@ -6,6 +6,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { AnimatedGradientTextDemo } from "./animatedtext";
 import { PRODUCT_SHOWCASE_HEAD } from "@/extensions/constants";
+import { exploreHandler } from "./lib/utils";
 
 export const Hero = () => {
   return (
@@ -64,30 +65,7 @@ export const Hero = () => {
           </button>
           <motion.button
             className="bg-gradient-to-r from-[#5D2CA8] to-[#A46EDB] text-white py-3 px-5 rounded-lg font-medium flex items-center gap-2 relative overflow-hidden group shadow-lg shadow-purple-500/30 border border-purple-400/30"
-            onClick={() => {
-              const productShowcase =
-                document.getElementById("product-showcase");
-              if (productShowcase) {
-                // Find the heading element within the product showcase section
-                const heading = productShowcase.querySelector("h2");
-                if (heading) {
-                  const headingRect = heading.getBoundingClientRect();
-                  const scrollTop =
-                    window.pageYOffset ||
-                    document.documentElement.scrollTop +
-                      (PRODUCT_SHOWCASE_HEAD - 20);
-                  // Calculate position to place the heading at the top of the viewport
-                  const targetPosition = scrollTop + headingRect.top;
-                  window.scrollTo({
-                    top: targetPosition,
-                    behavior: "smooth",
-                  });
-                } else {
-                  // Fallback if heading not found
-                  productShowcase.scrollIntoView({ behavior: "smooth" });
-                }
-              }
-            }}
+            onClick={exploreHandler}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
