@@ -5,6 +5,7 @@ import MessageImage from "../assets/images/message.png";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { AnimatedGradientTextDemo } from "./animatedtext";
+import { PRODUCT_SHOWCASE_HEAD } from "@/extensions/constants";
 
 export const Hero = () => {
   return (
@@ -57,10 +58,52 @@ export const Hero = () => {
             seamless workflow integration.
           </p>
         </div>
-        <div className="flex justify-center mt-8">
+        <div className="flex justify-center mt-8 gap-4">
           <button className="bg-white text-black py-3 px-5 rounded-lg font-medium">
             Install Pivoto
           </button>
+          <motion.button
+            className="bg-gradient-to-r from-[#5D2CA8] to-[#A46EDB] text-white py-3 px-5 rounded-lg font-medium flex items-center gap-2 relative overflow-hidden group shadow-lg shadow-purple-500/30 border border-purple-400/30"
+            onClick={() => {
+              const productShowcase =
+                document.getElementById("product-showcase");
+              if (productShowcase) {
+                // Find the heading element within the product showcase section
+                const heading = productShowcase.querySelector("h2");
+                if (heading) {
+                  const headingRect = heading.getBoundingClientRect();
+                  const scrollTop =
+                    window.pageYOffset ||
+                    document.documentElement.scrollTop +
+                      (PRODUCT_SHOWCASE_HEAD - 20);
+                  // Calculate position to place the heading at the top of the viewport
+                  const targetPosition = scrollTop + headingRect.top;
+                  window.scrollTo({
+                    top: targetPosition,
+                    behavior: "smooth",
+                  });
+                } else {
+                  // Fallback if heading not found
+                  productShowcase.scrollIntoView({ behavior: "smooth" });
+                }
+              }
+            }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <motion.span
+              className="absolute inset-0 bg-gradient-to-r from-purple-600/40 to-purple-300/40"
+              initial={{ x: "-100%", opacity: 0.5 }}
+              animate={{ x: "200%", opacity: 0.3 }}
+              transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
+            />
+            Explore
+            <motion.div
+            // className="w-5 h-5 bg-white rounded-full flex items-center justify-center"
+            >
+              <ArrowIcon className="w-6 h-6 text-purple-700 scale-125" />
+            </motion.div>
+          </motion.button>
         </div>
       </div>
     </div>

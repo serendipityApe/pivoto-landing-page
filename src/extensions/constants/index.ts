@@ -21,3 +21,5 @@ export const DISPLAY_OTHER_RESULTS = false;
 
 // additional results length
 export const ADDITIONAL_RESULTS_LENGTH = 3;
+
+export const PRODUCT_SHOWCASE_HEAD = 100;
