@@ -18,8 +18,9 @@ export const Hero = () => {
         </div>
         <div className="flex justify-center mt-8 ">
           <div className="inline-flex relative">
-            <h1 className="text-7xl sm:text-9xl font-bold tracking-tightner text-center inline-flex">
-              Pivoto <br /> focus
+            <h1 className="font-bold tracking-tightner text-center inline-flex flex-col">
+              <span className="text-7xl sm:text-9xl ">Pivoto</span>
+              <span className="text-5xl sm:text-7xl">Stay Focused</span>
             </h1>
             <motion.div
               className="absolute right-[478px] top-[108px] hidden sm:inline"
@@ -54,7 +55,7 @@ export const Hero = () => {
         <div className="flex justify-center">
           <p className="text-xl text-center mt-8 max-w-md">
             Transform your browsing experience with lightning-fast tab
-            navigation, intelligent search with @ commands, and cross-window
+            navigation, intelligent search with commands, and cross-window
             switching. Boost your productivity with customizable shortcuts and
             seamless workflow integration.
           </p>
