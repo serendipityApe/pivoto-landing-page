@@ -16,7 +16,7 @@ export const Hero = () => {
         <div className="flex items-center justify-center -mt-10">
           <AnimatedGradientTextDemo />
         </div>
-        <div className="flex justify-center mt-8 ">
+        <div className="flex justify-center mt-8">
           <div className="inline-flex relative">
             <h1 className="font-bold tracking-tightner text-center inline-flex flex-col">
               <span className="text-7xl sm:text-9xl ">Pivoto</span>

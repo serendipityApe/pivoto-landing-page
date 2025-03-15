@@ -1,10 +1,15 @@
-"use client"
+"use client";
 import { useState } from "react";
 import PlusIcon from "../assets/icons/plus.svg";
 import MinusIcon from "../assets/icons/minus.svg";
 import clsx from "clsx";
-import {motion , AnimatePresence} from 'framer-motion';
+import { motion, AnimatePresence } from "framer-motion";
 const items = [
+  {
+    question: "When will Pivoto be released?",
+    answer:
+      "Pivoto is currently under review by the Chrome Web Store and is expected to be released in late March. We’re working hard to make it available as soon as possible—stay tuned!",
+  },
   {
     question: "How do I get started with Pivoto?",
     answer:
@@ -27,32 +32,37 @@ const items = [
   },
 ];
 
-const AccordinationItem = ({question, answer}:{question:string, answer: string}) => {
-  const[isOpen, setIsOpen] = useState(false);
-  return(
-   
-    <div className=" py-7 border-b border-white/30" onClick={() => setIsOpen(!isOpen)}>
-    <div className="flex items-center ">
-      <span className="flex-1 text-lg font-bold">{question}</span>
-      {isOpen ? <MinusIcon /> :<PlusIcon />}
-      
+const AccordinationItem = ({
+  question,
+  answer,
+}: {
+  question: string;
+  answer: string;
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <div
+      className=" py-7 border-b border-white/30"
+      onClick={() => setIsOpen(!isOpen)}
+    >
+      <div className="flex items-center ">
+        <span className="flex-1 text-lg font-bold">{question}</span>
+        {isOpen ? <MinusIcon /> : <PlusIcon />}
       </div>
       <AnimatePresence>
-      {isOpen && (
-        <motion.div 
-        initial={{opacity: 0, height: 0, marginTop: 0}}
-        animate={{opacity: 1, height: "auto" , marginTop:'16px'}}
-        exit={{opacity: 0, height: 0, marginTop: 0}}
-          >{answer}</motion.div>
-
-      )}
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0, marginTop: 0 }}
+            animate={{ opacity: 1, height: "auto", marginTop: "16px" }}
+            exit={{ opacity: 0, height: 0, marginTop: 0 }}
+          >
+            {answer}
+          </motion.div>
+        )}
       </AnimatePresence>
-    
-  </div>
-  
-    
-  )
-}
+    </div>
+  );
+};
 
 export const FAQs = () => {
   return (
@@ -62,11 +72,15 @@ export const FAQs = () => {
           Frequently Asked Questions
         </h2>
         <div className="mt-12 max-w-[648px] mx-auto">
-         {items.map(({question, answer}) => (
-            <AccordinationItem question={question} answer={answer} key={question}/>
-         ))}
+          {items.map(({ question, answer }) => (
+            <AccordinationItem
+              question={question}
+              answer={answer}
+              key={question}
+            />
+          ))}
         </div>
       </div>
     </div>
-  )
+  );
 };

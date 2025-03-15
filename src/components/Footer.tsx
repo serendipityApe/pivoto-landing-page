@@ -11,10 +11,10 @@ export const Footer = () => {
         <div className="flex flex-col gap-5 sm:flex-row sm:justify-between">
           <div className="text-center">
             {" "}
-            2024 Eldora UI All rights are reserved
+            2024 Pivoto All rights are reserved
           </div>
           <ul className="flex justify-center gap-2.5">
-            <li>
+            {/* <li>
               <a
                 href="https://x.com/LeyuanW"
                 target="_blank"
@@ -22,7 +22,7 @@ export const Footer = () => {
               >
                 <XIcon />
               </a>
-            </li>
+            </li> */}
             {/* <li>
               <LinkedInIcon />
             </li>
