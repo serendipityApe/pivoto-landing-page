@@ -61,7 +61,15 @@ export const Hero = () => {
           </p>
         </div>
         <div className="flex justify-center mt-8 gap-4">
-          <button className="bg-white text-black py-3 px-5 rounded-lg font-medium">
+          <button
+            className="bg-white text-black py-3 px-5 rounded-lg font-medium"
+            onClick={() => {
+              window.open(
+                "https://chromewebstore.google.com/detail/pivoto/iegmcjfaancbpebgdgjldfadenkceffl",
+                "_blank"
+              );
+            }}
+          >
             Install Pivoto
           </button>
           <motion.button

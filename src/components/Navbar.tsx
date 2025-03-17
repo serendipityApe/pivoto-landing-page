@@ -82,7 +82,15 @@ export const Navbar = () => {
               >
                 Community
               </a>
-              <button className="bg-white py-2 px-4 rounded-lg text-black">
+              <button
+                className="bg-white py-2 px-4 rounded-lg text-black"
+                onClick={() => {
+                  window.open(
+                    "https://chromewebstore.google.com/detail/pivoto/iegmcjfaancbpebgdgjldfadenkceffl",
+                    "_blank"
+                  );
+                }}
+              >
                 Install Pivoto
               </button>
             </nav>
