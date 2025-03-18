@@ -6,11 +6,6 @@ import clsx from "clsx";
 import { motion, AnimatePresence } from "framer-motion";
 const items = [
   {
-    question: "When will Pivoto be released?",
-    answer:
-      "Pivoto is currently under review by the Chrome Web Store and is expected to be released in late March. We’re working hard to make it available as soon as possible—stay tuned!",
-  },
-  {
     question: "How do I get started with Pivoto?",
     answer:
       "Getting started is easy! After installing Pivoto, you can use Command + Shift + K to open the main interface or Command + Q for quick tab switching. Spend a few minutes exploring the interface, including the search bar with @ commands and tab navigator for easy access to all your open tabs.",
