@@ -22,7 +22,7 @@ const TabsContext = createContext<TabsContextType | undefined>(
 const initialTabs: Action[] = [
   {
     id: "command-k",
-    title: "Command + K Guide",
+    title: "Option +  K Guide",
     action: "switch-tab",
     CustomIcon: (
       <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
@@ -34,11 +34,11 @@ const initialTabs: Action[] = [
     active: true,
     content: (
       <div className="space-y-6 text-white/90">
-        <h2 className="text-2xl font-bold">Quick Access with Command + K</h2>
+        <h2 className="text-2xl font-bold">Quick Access with Option + K</h2>
         <div className="space-y-4">
           <p className="text-lg">Welcome to Pivoto! 🎉</p>
           <p>
-            To get started, press Command + Shift + K (or Ctrl + Shift + K on
+            To get started, press Option + Shift + K (or Ctrl + Shift + K on
             Windows) to open Pivoto&apos;s search interface.
           </p>
           <ul className="list-disc pl-6 space-y-2">
@@ -51,7 +51,7 @@ const initialTabs: Action[] = [
             </li>
           </ul>
           <p className="text-white/70 italic">
-            Now, press Command + Shift + K and explore!
+            Now, press Option + Shift + K and explore!
           </p>
         </div>
       </div>
@@ -72,20 +72,20 @@ const initialTabs: Action[] = [
     content: (
       <div className="space-y-6 text-white/90">
         <h2 className="text-2xl font-bold">
-          Switch Tabs Instantly with Command + Q
+          Switch Tabs Instantly with Option + Q
         </h2>
         <div className="space-y-4">
           <p className="text-lg">Want to switch between tabs faster?</p>
           <ul className="list-disc pl-6 space-y-2">
             <li>
-              Press Command + Q to instantly return to your last viewed tab.
+              Press Option + Q to instantly return to your last viewed tab.
             </li>
             <li>Hold Command after pressing Q to see a quick tab switcher.</li>
             <li>
               While holding Command, keep pressing Q to cycle through tabs.
             </li>
           </ul>
-          <p className="text-white/70 italic">Try pressing Command + Q now!</p>
+          <p className="text-white/70 italic">Try pressing Option + Q now!</p>
         </div>
       </div>
     ),
@@ -110,7 +110,7 @@ const initialTabs: Action[] = [
         <div className="space-y-4">
           <p className="text-lg">Need to find something you visited earlier?</p>
           <ul className="list-disc pl-6 space-y-2">
-            <li>Open Pivoto with Command + Shift + K.</li>
+            <li>Open Pivoto with Option + Shift + K.</li>
             <li>
               Type @history followed by a keyword (e.g., @history
               documentation).
@@ -146,7 +146,7 @@ const initialTabs: Action[] = [
             Too many bookmarks to remember? Use Pivoto to search them instantly!
           </p>
           <ul className="list-disc pl-6 space-y-2">
-            <li>Open Pivoto with Command + Shift + K.</li>
+            <li>Open Pivoto with Option + Shift + K.</li>
             <li>
               Type @bookmarks followed by a keyword (e.g., @bookmarks design).
             </li>

@@ -8,12 +8,12 @@ const items = [
   {
     question: "How do I get started with Pivoto?",
     answer:
-      "Getting started is easy! After installing Pivoto, you can use Command + Shift + K to open the main interface or Command + Q for quick tab switching. Spend a few minutes exploring the interface, including the search bar with @ commands and tab navigator for easy access to all your open tabs.",
+      "Getting started is easy! After installing Pivoto, you can use Option +  Shift + K to open the main interface or Option +  Q for quick tab switching. Spend a few minutes exploring the interface, including the search bar with @ commands and tab navigator for easy access to all your open tabs.",
   },
   {
     question: "What are the main keyboard shortcuts?",
     answer:
-      "Pivoto offers two main shortcuts: Command + Shift + K to open the main interface with full search capabilities, and Command + Q for quick tab switching. When using Command + Q, hold Command to access a simplified interface for rapid tab navigation across different windows.",
+      "Pivoto offers two main shortcuts: Option +  Shift + K to open the main interface with full search capabilities, and Option +  Q for quick tab switching. When using Option +  Q, hold Command to access a simplified interface for rapid tab navigation across different windows.",
   },
   {
     question: "How does the search functionality work?",

@@ -163,8 +163,8 @@ function CommandPalette({
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      console.log(e.key.toLowerCase());
-      if (e.metaKey && e.key.toLowerCase() === "k") {
+      console.log(e.key.toLowerCase(), e.code);
+      if (e.altKey && e.code === "KeyK") {
         e.preventDefault();
         !isOpen && setIsOpen(true);
         return;
