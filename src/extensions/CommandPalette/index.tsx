@@ -136,7 +136,6 @@ function CommandPalette({
       ...processDomains(filteredActions as any[]),
     ]);
   }, [filteredActions]);
-  console.log("trieData", trieData);
   useEffect(() => {
     if (tags.includes("bookmark")) {
       onSearchBookmarks(searchValue);
@@ -165,9 +164,9 @@ function CommandPalette({
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      console.log(e.key.toLowerCase(), e.code);
       if (e.altKey && e.code === "KeyK") {
         e.preventDefault();
+        setInputDisabled(false);
         !isOpen && setIsOpen(true);
         return;
       }

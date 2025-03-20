@@ -159,9 +159,9 @@ const TagInputField = forwardRef<HTMLInputElement, TagInputFieldProps>(
               value={suggestion}
             />
           )}
-          {showActionsSuggestion && (
+          {suggestion && (
             <span className="absolute right-4 text-gray-400 text-sm">
-              Search Actions <KeyTag>Tab</KeyTag>
+              <KeyTag>Tab</KeyTag>
             </span>
           )}
         </span>

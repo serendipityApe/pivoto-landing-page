@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useState, ReactNode } from "react";
 import type { Action } from "../extensions/types";
+import Keys from "@/components/Keys";
 
 // Define the shape of our context
 interface TabsContextType {
@@ -38,8 +39,9 @@ const initialTabs: Action[] = [
         <div className="space-y-4">
           <p className="text-lg">Welcome to Pivoto! 🎉</p>
           <p>
-            To get started, press Option + Shift + K (or Ctrl + Shift + K on
-            Windows) to open Pivoto&apos;s search interface.
+            To get started, press <Keys>Option + Shift + K</Keys> (or{" "}
+            <Keys>Ctrl + Shift + K</Keys> on Windows) to open Pivoto&apos;s
+            search interface.
           </p>
           <ul className="list-disc pl-6 space-y-2">
             <li>
@@ -51,7 +53,7 @@ const initialTabs: Action[] = [
             </li>
           </ul>
           <p className="text-white/70 italic">
-            Now, press Option + Shift + K and explore!
+            Now, press <Keys>Option + Shift + K</Keys> and explore!
           </p>
         </div>
       </div>
@@ -79,14 +81,21 @@ const initialTabs: Action[] = [
           <p className="text-lg">Want to switch between tabs faster?</p>
           <ul className="list-disc pl-6 space-y-2">
             <li>
-              Press Option + Q to instantly return to your last viewed tab.
+              <b>Press</b> <Keys>Option + Q</Keys> to <b>instantly</b> return to
+              your last viewed tab.
             </li>
-            <li>Hold Option after pressing Q to see a quick tab switcher.</li>
             <li>
-              While holding Option, keep pressing Q to cycle through tabs.
+              <b>Hold</b> <Keys>Option</Keys> after <b>pressing</b>{" "}
+              <Keys>Q</Keys> to see a quick tab switcher.
+            </li>
+            <li>
+              While holding <Keys>Option</Keys>, <b>keep pressing</b>{" "}
+              <Keys>Q</Keys> to cycle through tabs.
             </li>
           </ul>
-          <p className="text-white/70 italic">Try pressing Option + Q now!</p>
+          <p className="text-white/70 italic">
+            Try pressing <Keys>Option + Q</Keys> now!
+          </p>
         </div>
       </div>
     ),
@@ -112,12 +121,16 @@ const initialTabs: Action[] = [
         <div className="space-y-4">
           <p className="text-lg">Need to find something you visited earlier?</p>
           <ul className="list-disc pl-6 space-y-2">
-            <li>Open Pivoto with Option + Shift + K.</li>
             <li>
-              Type @history followed by a keyword (e.g., @history
+              Open Pivoto with <Keys>Option + Shift + K</Keys>.
+            </li>
+            <li>
+              Type <Keys> @history </Keys> followed by a keyword (e.g., @history
               documentation).
             </li>
-            <li>Select the result you need and press Enter.</li>
+            <li>
+              Select the result you need and press <Keys>Enter</Keys>.
+            </li>
           </ul>
           <p className="text-white/70 italic">
             Try searching with @history now!
@@ -149,11 +162,16 @@ const initialTabs: Action[] = [
             Too many bookmarks to remember? Use Pivoto to search them instantly!
           </p>
           <ul className="list-disc pl-6 space-y-2">
-            <li>Open Pivoto with Option + Shift + K.</li>
             <li>
-              Type @bookmarks followed by a keyword (e.g., @bookmarks design).
+              Open Pivoto with <Keys>Option + Shift + K</Keys>.
             </li>
-            <li>Select the desired bookmark and press Enter.</li>
+            <li>
+              Type <Keys>@bookmarks</Keys> followed by a keyword (e.g.,
+              @bookmarks design).
+            </li>
+            <li>
+              Select the desired bookmark and press <Keys>Enter</Keys>.
+            </li>
           </ul>
           <p className="text-white/70 italic">Give it a try now!</p>
         </div>

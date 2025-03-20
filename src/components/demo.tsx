@@ -21,8 +21,6 @@ const DemoContent = () => {
   }, [tabs]);
   const handleAction = useCallback(
     (action: Action, query: string) => {
-      console.log("Action triggered:", action, "Query:", query);
-
       if (action.action === "bookmark" || action.action === "history") {
         // For bookmarks and history, add a new tab
         addTab({
