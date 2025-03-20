@@ -90,7 +90,7 @@ const BrowserLike = ({ pivoto }: { pivoto?: React.ReactNode }) => {
                 clipRule="evenodd"
               />
             </svg>
-            pivoto.{activeTabId}.com
+            {activeTabId}.com
           </div>
         </div>
       </div>
