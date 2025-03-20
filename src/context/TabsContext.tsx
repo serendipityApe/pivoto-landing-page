@@ -19,11 +19,26 @@ const TabsContext = createContext<TabsContextType | undefined>(
   {} as TabsContextType
 );
 
+// Helper function to determine OS-specific modifier key
+const getModifierKey = () => {
+  // Check if user is on macOS
+  const platform = navigator.platform.toLowerCase();
+  const userAgent = navigator.userAgent.toLowerCase();
+
+  if (platform.includes("mac") || userAgent.includes("macintosh")) {
+    return "Option";
+  } else if (platform.includes("win") || userAgent.includes("windows")) {
+    return "Alt";
+  } else {
+    return "Alt";
+  }
+};
+
 // Initial tabs data combining the structure from both components
 const initialTabs: Action[] = [
   {
     id: "command-k",
-    title: "Option +  K Guide",
+    title: `${getModifierKey()} + K Guide`,
     action: "switch-tab",
     CustomIcon: (
       <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
@@ -35,13 +50,14 @@ const initialTabs: Action[] = [
     active: true,
     content: (
       <div className="space-y-6 text-white/90">
-        <h2 className="text-2xl font-bold">Quick Access with Option + K</h2>
+        <h2 className="text-2xl font-bold">
+          Quick Access with {getModifierKey()} + K
+        </h2>
         <div className="space-y-4">
           <p className="text-lg">Welcome to Pivoto! 🎉</p>
           <p>
-            To get started, press <Keys>Option + Shift + K</Keys> (or{" "}
-            <Keys>Ctrl + Shift + K</Keys> on Windows) to open Pivoto&apos;s
-            search interface.
+            To get started, press <Keys>{getModifierKey()} + Shift + K</Keys> to
+            open Pivoto&apos;s search interface.
           </p>
           <ul className="list-disc pl-6 space-y-2">
             <li>
@@ -53,7 +69,7 @@ const initialTabs: Action[] = [
             </li>
           </ul>
           <p className="text-white/70 italic">
-            Now, press <Keys>Option + Shift + K</Keys> and explore!
+            Now, press <Keys>{getModifierKey()} + Shift + K</Keys> and explore!
           </p>
         </div>
       </div>
@@ -75,26 +91,26 @@ const initialTabs: Action[] = [
     content: (
       <div className="space-y-6 text-white/90">
         <h2 className="text-2xl font-bold">
-          Switch Tabs Instantly with Option + Q
+          Switch Tabs Instantly with {getModifierKey()} + Q
         </h2>
         <div className="space-y-4">
           <p className="text-lg">Want to switch between tabs faster?</p>
           <ul className="list-disc pl-6 space-y-2">
             <li>
-              <b>Press</b> <Keys>Option + Q</Keys> to <b>instantly</b> return to
-              your last viewed tab.
+              <b>Press</b> <Keys>{getModifierKey()} + Q</Keys> to{" "}
+              <b>instantly</b> return to your last viewed tab.
             </li>
             <li>
-              <b>Hold</b> <Keys>Option</Keys> after <b>pressing</b>{" "}
+              <b>Hold</b> <Keys>{getModifierKey()}</Keys> after <b>pressing</b>{" "}
               <Keys>Q</Keys> to see a quick tab switcher.
             </li>
             <li>
-              While holding <Keys>Option</Keys>, <b>keep pressing</b>{" "}
-              <Keys>Q</Keys> to cycle through tabs.
+              While holding <Keys>{getModifierKey()}</Keys>,{" "}
+              <b>keep pressing</b> <Keys>Q</Keys> to cycle through tabs.
             </li>
           </ul>
           <p className="text-white/70 italic">
-            Try pressing <Keys>Option + Q</Keys> now!
+            Try pressing <Keys>{getModifierKey()} + Q</Keys> now!
           </p>
         </div>
       </div>
@@ -122,7 +138,7 @@ const initialTabs: Action[] = [
           <p className="text-lg">Need to find something you visited earlier?</p>
           <ul className="list-disc pl-6 space-y-2">
             <li>
-              Open Pivoto with <Keys>Option + Shift + K</Keys>.
+              Open Pivoto with <Keys>{getModifierKey()} + Shift + K</Keys>.
             </li>
             <li>
               Type <Keys> @history </Keys> followed by a keyword (e.g., @history
@@ -163,7 +179,7 @@ const initialTabs: Action[] = [
           </p>
           <ul className="list-disc pl-6 space-y-2">
             <li>
-              Open Pivoto with <Keys>Option + Shift + K</Keys>.
+              Open Pivoto with <Keys>{getModifierKey()} + Shift + K</Keys>.
             </li>
             <li>
               Type <Keys>@bookmarks</Keys> followed by a keyword (e.g.,
