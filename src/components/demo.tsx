@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import CommandPalette from "../extensions/CommandPalette";
 import BrowserLike from "./BrowserLike";
@@ -16,7 +16,9 @@ const DemoContent = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { tabs, addTab, setActiveTabId } = useTabs();
   const [actions, setActions] = useState<Action[]>(tabs);
-
+  useEffect(() => {
+    setActions(tabs);
+  }, [tabs]);
   const handleAction = useCallback(
     (action: Action, query: string) => {
       console.log("Action triggered:", action, "Query:", query);

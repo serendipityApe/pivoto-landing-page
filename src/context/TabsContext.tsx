@@ -56,6 +56,7 @@ const initialTabs: Action[] = [
         </div>
       </div>
     ),
+    lastActiveTime: Date.now(),
   },
   {
     id: "quick-switch",
@@ -80,15 +81,16 @@ const initialTabs: Action[] = [
             <li>
               Press Option + Q to instantly return to your last viewed tab.
             </li>
-            <li>Hold Command after pressing Q to see a quick tab switcher.</li>
+            <li>Hold Option after pressing Q to see a quick tab switcher.</li>
             <li>
-              While holding Command, keep pressing Q to cycle through tabs.
+              While holding Option, keep pressing Q to cycle through tabs.
             </li>
           </ul>
           <p className="text-white/70 italic">Try pressing Option + Q now!</p>
         </div>
       </div>
     ),
+    lastActiveTime: Date.now() - 60 * 1000,
   },
   {
     id: "history",
@@ -123,6 +125,7 @@ const initialTabs: Action[] = [
         </div>
       </div>
     ),
+    lastActiveTime: Date.now() - 60 * 1000 * 4,
   },
   {
     id: "bookmarks",
@@ -156,6 +159,7 @@ const initialTabs: Action[] = [
         </div>
       </div>
     ),
+    lastActiveTime: Date.now() - 60 * 1000 * 6,
   },
 ];
 
@@ -230,6 +234,8 @@ export const TabsProvider: React.FC<{ children: ReactNode }> = ({
       tabs.map((tab) => ({
         ...tab,
         active: tab.id === id,
+        // Update lastActiveTime when tab is activated
+        lastActiveTime: tab.id === id ? Date.now() : tab.lastActiveTime,
       }))
     );
   };

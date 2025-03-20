@@ -13,7 +13,7 @@ const items = [
   {
     question: "What are the main keyboard shortcuts?",
     answer:
-      "Pivoto offers two main shortcuts: Option +  Shift + K to open the main interface with full search capabilities, and Option +  Q for quick tab switching. When using Option +  Q, hold Command to access a simplified interface for rapid tab navigation across different windows.",
+      "Pivoto offers two main shortcuts: Option +  Shift + K to open the main interface with full search capabilities, and Option +  Q for quick tab switching. When using Option +  Q, hold Option to access a simplified interface for rapid tab navigation across different windows.",
   },
   {
     question: "How does the search functionality work?",

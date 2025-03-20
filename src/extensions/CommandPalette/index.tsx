@@ -45,8 +45,7 @@ function CommandPalette({
   shortcuts,
   setIsOpen,
 }: CommandPaletteProps) {
-  const isAltTimer = useRef(null);
-
+  const isAltTimer = useRef<number | null>(null);
   const [keyStates, setKeyStates] = useState<Record<string, boolean>>({});
   const [activeIndex, setActiveIndex] = useState(0);
   const [searchValue, setSearchValue] = useState("");
@@ -160,6 +159,9 @@ function CommandPalette({
     onSearchHistory,
     onGetActions,
   ]);
+  useEffect(() => {
+    setActiveIndex(0);
+  }, [isOpen]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -167,6 +169,18 @@ function CommandPalette({
       if (e.altKey && e.code === "KeyK") {
         e.preventDefault();
         !isOpen && setIsOpen(true);
+        return;
+      }
+      if (e.altKey && e.code === "KeyQ") {
+        e.preventDefault();
+        if (!isAltTimer.current && !isOpen) {
+          isAltTimer.current = window.setTimeout(() => {
+            setInputDisabled(true);
+            !isOpen && setIsOpen(true);
+          }, 150);
+        } else if (isAltTimer.current) {
+          itemActiveDown();
+        }
         return;
       }
       if (
@@ -218,8 +232,12 @@ function CommandPalette({
       if (!e.altKey && isAltTimer.current) {
         if (isOpen) {
           if (filteredActions.length) handleAction(activeIndex);
+        } else {
+          //todo cycle tab
+          handleAction(0);
+          setIsOpen(false);
         }
-        clearTimeout(isAltTimer.current);
+        window.clearTimeout(isAltTimer.current);
         isAltTimer.current = null;
       }
     };
@@ -247,7 +265,15 @@ function CommandPalette({
   useEffect(() => {
     const fetchFilteredActions = async () => {
       if (isTagMode) {
-        setFilteredActions(originActions);
+        // Sort by lastActiveTime even in tag mode
+        const sortedActions = [...originActions].sort((a, b) => {
+          // Ensure the current active tab is always at the top
+          if (a.active) return 1;
+          if (b.active) return -1;
+          // Sort by lastActiveTime (most recent first)
+          return (b.lastActiveTime || 0) - (a.lastActiveTime || 0);
+        });
+        setFilteredActions(sortedActions);
         return;
       }
 
@@ -261,13 +287,26 @@ function CommandPalette({
           );
         });
 
-        if (_filteredActions.length < 3) {
-          setFilteredActions(_filteredActions);
-        } else {
-          setFilteredActions(_filteredActions);
-        }
+        // Sort filtered actions by lastActiveTime
+        _filteredActions = _filteredActions.sort((a, b) => {
+          // Ensure the current active tab is always at the top
+          if (a.active) return 1;
+          if (b.active) return -1;
+          // Sort by lastActiveTime (most recent first)
+          return (b.lastActiveTime || 0) - (a.lastActiveTime || 0);
+        });
+
+        setFilteredActions(_filteredActions);
       } else {
-        setFilteredActions(originActions);
+        // Sort by lastActiveTime when no search query
+        const sortedActions = [...originActions].sort((a, b) => {
+          // Ensure the current active tab is always at the top
+          if (a.active) return 1;
+          if (b.active) return -1;
+          // Sort by lastActiveTime (most recent first)
+          return (b.lastActiveTime || 0) - (a.lastActiveTime || 0);
+        });
+        setFilteredActions(sortedActions);
       }
     };
 
