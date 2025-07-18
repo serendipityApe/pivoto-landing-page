@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, { createContext, useContext, useState, useCallback, ReactNode, useMemo } from "react";
 import type { Action } from "../extensions/types";
 import Keys from "@/components/Keys";
 
@@ -12,6 +12,13 @@ interface TabsContextType {
   addTab: (tab: Action) => void;
   removeTab: (id: string) => void;
   updateTab: (id: string, updates: Partial<Action>) => void;
+  getModifierKey: () => string;
+  // 新增的历史记录和书签管理功能
+  addToHistory: (tab: Action) => void;
+  addToBookmarks: (tab: Action) => void;
+  removeFromBookmarks: (id: string) => void;
+  getRecentTabs: (limit?: number) => Action[];
+  searchTabs: (query: string) => Action[];
 }
 
 // Create the context with a default value
@@ -203,6 +210,8 @@ export const TabsProvider: React.FC<{ children: ReactNode }> = ({
 }) => {
   const [tabs, setTabs] = useState<Action[]>(initialTabs);
   const [activeTabId, setActiveTabId] = useState<string>("command-k");
+  const [history, setHistory] = useState<Action[]>([]);
+  const [bookmarks, setBookmarks] = useState<Action[]>([]);
 
   // Add a new tab
   const addTab = (tab: Action) => {
@@ -274,6 +283,42 @@ export const TabsProvider: React.FC<{ children: ReactNode }> = ({
     );
   };
 
+  // 新增的历史记录和书签管理功能
+  const addToHistory = useCallback((tab: Action) => {
+    setHistory(prev => {
+      const filtered = prev.filter(item => item.id !== tab.id);
+      return [{ ...tab, lastActiveTime: Date.now() }, ...filtered].slice(0, 100);
+    });
+  }, []);
+
+  const addToBookmarks = useCallback((tab: Action) => {
+    setBookmarks(prev => {
+      if (prev.some(item => item.id === tab.id)) return prev;
+      return [...prev, { ...tab, lastActiveTime: Date.now() }];
+    });
+  }, []);
+
+  const removeFromBookmarks = useCallback((id: string) => {
+    setBookmarks(prev => prev.filter(item => item.id !== id));
+  }, []);
+
+  const getRecentTabs = useCallback((limit: number = 10) => {
+    return [...tabs]
+      .sort((a, b) => (b.lastActiveTime || 0) - (a.lastActiveTime || 0))
+      .slice(0, limit);
+  }, [tabs]);
+
+  const searchTabs = useCallback((query: string) => {
+    const lowerQuery = query.toLowerCase();
+    return tabs.filter(tab => 
+      tab.title?.toLowerCase().includes(lowerQuery) ||
+      tab.url?.toLowerCase().includes(lowerQuery) ||
+      tab.domain?.toLowerCase().includes(lowerQuery)
+    );
+  }, [tabs]);
+
+  const memoizedGetModifierKey = useMemo(() => getModifierKey, []);
+
   return (
     <TabsContext.Provider
       value={{
@@ -283,6 +328,12 @@ export const TabsProvider: React.FC<{ children: ReactNode }> = ({
         addTab,
         removeTab,
         updateTab,
+        getModifierKey: memoizedGetModifierKey,
+        addToHistory,
+        addToBookmarks,
+        removeFromBookmarks,
+        getRecentTabs,
+        searchTabs,
       }}
     >
       {children}

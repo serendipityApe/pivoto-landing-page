@@ -4,7 +4,7 @@ import React from "react";
 import { useTabs } from "../context/TabsContext";
 
 const BrowserLike = ({ pivoto }: { pivoto?: React.ReactNode }) => {
-  const { tabs, activeTabId, setActiveTabId } = useTabs();
+  const { tabs, activeTabId, setActiveTabId, removeTab } = useTabs();
 
   return (
     <div className="w-full h-[800px] mx-8 bg-[#1E1E1E] rounded-lg overflow-hidden shadow-2xl border border-white/10">
@@ -18,7 +18,7 @@ const BrowserLike = ({ pivoto }: { pivoto?: React.ReactNode }) => {
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-1 ml-4">
+        <div className="flex bg-[#2D2D2D] border-b border-[#2D2D2D] overflow-x-auto scrollbar-hide">
           {tabs.map((tab) => (
             <div
               key={tab.id}
@@ -26,11 +26,27 @@ const BrowserLike = ({ pivoto }: { pivoto?: React.ReactNode }) => {
               className={`${
                 tab.active
                   ? "bg-[#3D3D3D] text-white/90"
-                  : "bg-[#2D2D2D] text-white/40 border-b border-[#1E1E1E]"
-              } px-4 py-1 rounded-t-lg text-sm cursor-pointer flex items-center gap-2`}
+                  : "bg-[#2D2D2D] text-white/40 border-b"
+              } px-4 py-1 rounded-t-lg text-sm cursor-pointer border-[#2D2D2D] flex items-center gap-2 min-w-0 max-w-[200px] flex-shrink-0 group hover:bg-[#3D3D3D]/50 transition-colors`}
+              title={tab.title} // 添加 tooltip 显示完整标题
             >
-              {tab.CustomIcon}
-              {tab.title}
+              <span className="flex-shrink-0">{tab.CustomIcon}</span>
+              <span className="truncate text-left">{tab.title}</span>
+              {/* 添加关闭按钮 */}
+              {tabs.length > 1 && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (tab.id) removeTab(tab.id as string);
+                  }}
+                  className="ml-1 opacity-0 group-hover:opacity-100 hover:bg-white/20 rounded p-0.5 transition-opacity flex-shrink-0"
+                  title="关闭标签页"
+                >
+                  <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                </button>
+              )}
             </div>
           ))}
         </div>

@@ -160,6 +160,7 @@ function CommandPalette({
   ]);
   useEffect(() => {
     setActiveIndex(0);
+    setTags([]);
   }, [isOpen]);
 
   useEffect(() => {

@@ -1,9 +1,11 @@
 "use client";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, useMemo } from "react";
 
 import CommandPalette from "../extensions/CommandPalette";
 import BrowserLike from "./BrowserLike";
 import { TabsProvider, useTabs } from "../context/TabsContext";
+import { mockHistoryData, mockBookmarksData, searchData, getRecentItems } from "../data/mockData";
+import { advancedSearch, fuzzySearch, SearchHistoryManager, createDebouncedSearch } from "../utils/searchUtils";
 import type { Action } from "../extensions/types";
 
 // Mock shortcuts data
@@ -27,6 +29,8 @@ const DemoContent = () => {
           ...action,
           id: action.id || `tab-${Date.now()}`,
           active: true,
+          action: 'switch-tab',
+          lastActiveTime: Date.now(),
         });
       } else if (action.action === "switch-tab") {
         // For switch-tab actions, just activate the tab
@@ -59,30 +63,71 @@ const DemoContent = () => {
     setActions(tabs);
   }, [tabs]);
 
+  // 创建防抖搜索函数
+  const debouncedBookmarkSearch = useMemo(
+    () => createDebouncedSearch((query: string) => {
+      const searchResult = advancedSearch(mockBookmarksData, {
+        query,
+        type: 'bookmark',
+        limit: 10,
+        sortBy: 'relevance'
+      });
+      setActions(searchResult.items);
+      
+      // 添加到搜索历史
+      if (query.trim()) {
+        SearchHistoryManager.addToHistory(query);
+      }
+    }, 200),
+    []
+  );
+
+  const debouncedHistorySearch = useMemo(
+    () => createDebouncedSearch((query: string) => {
+      const searchResult = advancedSearch(mockHistoryData, {
+        query,
+        type: 'history',
+        limit: 10,
+        sortBy: 'time'
+      });
+      setActions(searchResult.items);
+      
+      // 添加到搜索历史
+      if (query.trim()) {
+        SearchHistoryManager.addToHistory(query);
+      }
+    }, 200),
+    []
+  );
+
   const handleSearchBookmarks = useCallback(
     (query: string) => {
-      const bookmarks = tabs.filter(
-        (action) =>
-          action.action === "bookmark" &&
-          (action.title?.toLowerCase().includes(query.toLowerCase()) ||
-            action.desc?.toLowerCase().includes(query.toLowerCase()))
-      );
-      setActions(bookmarks);
+      if (!query.trim()) {
+        // 如果没有查询，显示最近的书签
+        const recentBookmarks = getRecentItems(mockBookmarksData, 10);
+        setActions(recentBookmarks);
+        return;
+      }
+      
+      // 使用防抖搜索
+      debouncedBookmarkSearch(query);
     },
-    [tabs]
+    [debouncedBookmarkSearch]
   );
 
   const handleSearchHistory = useCallback(
     (query: string) => {
-      const history = tabs.filter(
-        (action) =>
-          action.action === "history" &&
-          (action.title?.toLowerCase().includes(query.toLowerCase()) ||
-            action.desc?.toLowerCase().includes(query.toLowerCase()))
-      );
-      setActions(history);
+      if (!query.trim()) {
+        // 如果没有查询，显示最近的历史记录
+        const recentHistory = getRecentItems(mockHistoryData, 10);
+        setActions(recentHistory);
+        return;
+      }
+      
+      // 使用防抖搜索
+      debouncedHistorySearch(query);
     },
-    [tabs]
+    [debouncedHistorySearch]
   );
 
   const handleAiCommand = useCallback((action: Action, query: string) => {
