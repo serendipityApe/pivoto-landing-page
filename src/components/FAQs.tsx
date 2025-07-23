@@ -6,24 +6,34 @@ import clsx from "clsx";
 import { motion, AnimatePresence } from "framer-motion";
 const items = [
   {
-    question: "How do I get started with Pivoto?",
+    question: "How do I install and get started with Pivoto Chrome extension?",
     answer:
-      "Getting started is easy! After installing Pivoto, you can use Option +  Shift + K to open the main interface or Option +  Q for quick tab switching. Spend a few minutes exploring the interface, including the search bar with @ commands and tab navigator for easy access to all your open tabs.",
+      "Getting started with Pivoto is easy! First, install the extension from the Chrome Web Store. After installation, you can use Cmd+Shift+K (Command+Shift+K) to open the main interface or Cmd+Q (Command+Q) for quick tab switching. Spend a few minutes exploring the interface, including the search bar with @ commands and tab navigator for easy access to all your open browser tabs.",
   },
   {
-    question: "What are the main keyboard shortcuts?",
+    question: "What are Pivoto's main keyboard shortcuts for tab management?",
     answer:
-      "Pivoto offers two main shortcuts: Option +  Shift + K to open the main interface with full search capabilities, and Option +  Q for quick tab switching. When using Option +  Q, hold Option to access a simplified interface for rapid tab navigation across different windows.",
+      "Pivoto offers two powerful keyboard shortcuts: Cmd+Shift+K to open the main interface with full search capabilities across tabs, history, and bookmarks, and Cmd+Q for lightning-fast tab switching. When using Cmd+Q, hold Command to access a simplified interface for rapid tab navigation across different browser windows. These shortcuts work seamlessly across Chrome and Chromium-based browsers.",
   },
   {
-    question: "How does the search functionality work?",
+    question: "How does Pivoto's intelligent search with @ commands work?",
     answer:
-      "Pivoto's search bar is highly powerful and supports @ commands for quick searching. You can instantly get input suggestions using Tab at any time. The search functionality works across all your open tabs, history, and bookmarks, making it easy to find exactly what you're looking for.",
+      "Pivoto's search bar is highly powerful and supports @ commands for quick searching through your browser data. You can search through open tabs, browsing history, and bookmarks using @ symbols. The search provides instant input suggestions using Tab completion. This intelligent search functionality makes it easy to find exactly what you're looking for across your entire browsing session.",
   },
   {
-    question: "Can I customize Pivoto to my workflow?",
+    question: "Can I customize Pivoto for my productivity workflow?",
     answer:
-      "Yes! Pivoto is designed to be flexible and customizable. You can configure your preferred shortcuts and focus options to match your workflow. We recommend saving sites with relevant keywords for easier future access, and utilizing features like cross-window navigation and installed-as-app page switching for enhanced productivity.",
+      "Absolutely! Pivoto is designed to be flexible and customizable for maximum productivity. You can configure your preferred keyboard shortcuts and focus options to match your workflow. We recommend saving websites with relevant keywords for easier future access, and utilizing features like cross-window navigation and installed-as-app page switching for enhanced browsing efficiency.",
+  },
+  {
+    question: "Is Pivoto compatible with all Chromium-based browsers?",
+    answer:
+      "Yes! Pivoto works seamlessly with Chrome and all Chromium-based browsers including Microsoft Edge, Brave, Opera, and Vivaldi. The extension maintains consistent performance across different browser environments, ensuring your tab management and productivity features work reliably regardless of your preferred browser.",
+  },
+  {
+    question: "How does Pivoto improve browser productivity for power users?",
+    answer:
+      "Pivoto significantly enhances browser productivity through lightning-fast tab navigation, cross-window switching, intelligent search capabilities, and customizable keyboard shortcuts. It's perfect for developers, researchers, and power users who manage multiple tabs daily. The extension reduces time spent searching for tabs and improves focus by streamlining your browsing workflow.",
   },
 ];
 

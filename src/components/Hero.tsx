@@ -23,7 +23,7 @@ export const Hero = () => {
               <span className="text-5xl sm:text-7xl">Stay Focused</span>
             </h1>
             <motion.div
-              className="absolute right-[478px] top-[108px] hidden sm:inline"
+              className="absolute right-[478px] hidden sm:inline"
               drag
               dragSnapToOrigin
             >
@@ -53,12 +53,34 @@ export const Hero = () => {
           </div>
         </div>
         <div className="flex justify-center">
-          <p className="text-xl text-center mt-8 max-w-md">
-            Transform your browsing experience with lightning-fast tab
-            navigation, intelligent search with commands, and cross-window
-            switching. Boost your productivity with customizable shortcuts and
-            seamless workflow integration.
+          <p className="text-xl text-center mt-8 max-w-2xl">
+            Transform your browsing experience with{" "}
+            <strong>lightning-fast tab navigation</strong>,
+            <strong>intelligent search with @ commands</strong>, and{" "}
+            <strong>cross-window switching</strong>. Boost your productivity
+            with <strong>customizable shortcuts (Cmd+Shift+K, Cmd+Q)</strong>{" "}
+            and seamless workflow integration. Perfect for developers,
+            researchers, and power users who manage multiple tabs daily.
           </p>
+        </div>
+        <div className="flex justify-center mt-6">
+          <div className="flex flex-wrap justify-center gap-2 text-sm text-white/80">
+            <span className="bg-white/10 px-3 py-1 rounded-full">
+              Tab Management
+            </span>
+            <span className="bg-white/10 px-3 py-1 rounded-full">
+              Productivity Tool
+            </span>
+            <span className="bg-white/10 px-3 py-1 rounded-full">
+              Browser Extension
+            </span>
+            <span className="bg-white/10 px-3 py-1 rounded-full">
+              Keyboard Shortcuts
+            </span>
+            <span className="bg-white/10 px-3 py-1 rounded-full">
+              Cross-Window Navigation
+            </span>
+          </div>
         </div>
         <div className="flex justify-center mt-8 gap-4">
           <button
