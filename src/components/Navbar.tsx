@@ -6,7 +6,7 @@ import { exploreHandler } from "./lib/utils";
 
 export const Navbar = () => {
   return (
-    <div className="bg-black">
+    <div className="z-10 bg-black">
       <div className="px-4">
         <div className="container bg-black">
           <div className="py-4 flex items-center justify-between">

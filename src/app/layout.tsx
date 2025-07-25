@@ -131,7 +131,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={clsx(dmSans.className, "antialiased")}>{children}</body>
+      <body className={clsx(dmSans.className, "antialiased") + ' bg-black'}>{children}</body>
     </html>
   );
 }

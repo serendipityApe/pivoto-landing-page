@@ -3,10 +3,12 @@ import XIcon from "../assets/icons/x-social.svg";
 import LinkedInIcon from "../assets/icons/linkedin.svg";
 import YoutubeIcon from "../assets/icons/youtube.svg";
 import DiscordIcon from "../assets/icons/discord.svg";
+import FuzzyFooter from "./FuzzyFooter";
 
 export const Footer = () => {
   return (
-    <footer className="py-5 bg-black text-white/60 border-t border-white/20">
+    <>
+    <footer className="z-10 relative w-full py-5 bg-black text-white/60 border-t border-white/20">
       <div className="container">
         <div className="flex flex-col gap-5 sm:flex-row sm:justify-between">
           <div className="text-center">
@@ -45,5 +47,13 @@ export const Footer = () => {
         </div>
       </div>
     </footer>
+    <div className="w-full relative z-0" style={{
+      '--distortion-aspect': 5.7,
+      '--padding-y': '16px',
+      paddingBottom: 'calc((min(100vw, 1600px) + 2 * var(--padding-y)) / var(--distortion-aspect))',
+    }}>
+      <FuzzyFooter  baseIntensity={0} fontSize={"clamp(8rem, 20vw, 25rem)"}>PIVOTO</FuzzyFooter>
+    </div>
+    </>
   );
 };
