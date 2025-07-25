@@ -48,10 +48,10 @@ export const Footer = () => {
       </div>
     </footer>
     <div className="w-full relative z-0" style={{
-      '--distortion-aspect': 5.7,
+      '--distortion-aspect': '5.7',
       '--padding-y': '16px',
       paddingBottom: 'calc((min(100vw, 1600px) + 2 * var(--padding-y)) / var(--distortion-aspect))',
-    }}>
+    } as React.CSSProperties}>
       <FuzzyFooter  baseIntensity={0} fontSize={"clamp(8rem, 20vw, 25rem)"}>PIVOTO</FuzzyFooter>
     </div>
     </>
