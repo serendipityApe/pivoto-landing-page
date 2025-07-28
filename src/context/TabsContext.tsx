@@ -28,6 +28,11 @@ const TabsContext = createContext<TabsContextType | undefined>(
 
 // Helper function to determine OS-specific modifier key
 const getModifierKey = () => {
+  // Check if we're in a browser environment
+  if (typeof window === 'undefined' || typeof navigator === 'undefined') {
+    return "Alt"; // Default for SSR
+  }
+  
   // Check if user is on macOS
   const platform = navigator.platform.toLowerCase();
   const userAgent = navigator.userAgent.toLowerCase();
